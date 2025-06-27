@@ -8,7 +8,7 @@ With **mBot-Hap** you can steer an [mBot robot](https://www.makeblock.com/pages/
 - A usb game controller like [this one](https://www.kabelshop.nl/Gembird-Controller-pc-Gembird-2-controllers-USB-Vibratie-D-pad-10-knoppen-2-joysticks-JPD-UDV2-01-i24279-t1437173.html) (or coding skills to make it work with other controllers)
 ## Get it running
 - Download this repository as a zip file, **unblock** the zip file and extract it
-- Install [Python 3.12](https://www.python.org/)
+- Install [Python 3.13](https://www.python.org/)
 - Install the following Python libraries:
 ```
 pip install cython

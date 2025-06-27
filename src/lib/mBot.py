@@ -82,7 +82,7 @@ class mHID():
     def read(self):
         c = self.buffer[0]
         self.buffer = self.buffer[1:]
-        return unichr(c)
+        return chr(c)
         
     def isOpen(self):
         return True
