@@ -261,3 +261,13 @@ class mBot():
 
     def short2bytes(self,sval):
         return [sval & 0xff, (sval & 0xff00) >> 8]
+
+def findMBot():
+    try:
+        bot = mBot()
+        bot.startWithHID()
+        return bot
+    except Exception as err:
+        print(f"ERROR Could not initialize mBot {err=}, {type(err)=}")
+        print("Insert a 2.4GHz-dongle, turn on the mBot and start again...")
+        sys.exit()
