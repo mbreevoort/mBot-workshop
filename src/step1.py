@@ -15,5 +15,5 @@ if __name__ == '__main__':
             bot.doRGBLedOnBoard(1, random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
             sleep(1)
     finally:
-        bot.doRGBLedOnBoard(1, 0, 0, 0)
+        bot.doRGBLedOnBoard(1, 0, 0, 0) # turn off the led lights
 
