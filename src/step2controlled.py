@@ -19,16 +19,16 @@ def main():
             if ch == 27:  # ESC key to exit
                 break
 
-            if ch == 258:  # DOWN key
+            if ch == 258 or ch == 456 or ch == 115:  # DOWN key mac, win, s
                 bot.doMove(-100, -100)
 
-            if ch == 259:  # UP key
+            if ch == 259 or ch == 450 or ch == 119:  # UP key mac, win, w
                 bot.doMove(200, 200)
 
-            if ch == 260:  # LEFT key
+            if ch == 260 or ch == 452 or ch == 97:  # LEFT key mac, win, a
                 bot.doMove(-100, 100)
 
-            if ch == 261:  # RIGHT key
+            if ch == 261 or ch == 454 or ch == 100:  # RIGHT key mac, win, d
                 bot.doMove(100, -100)
 
             if ch == 32:   # SPACE key
