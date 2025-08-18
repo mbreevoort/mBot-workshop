@@ -15,6 +15,7 @@ pip install cython
 pip install pyserial
 pip install hidapi
 pip install pygame 
+pip install uni-curses
 ```
 
 - **NOTE** - On Windows, pip.exe is usually installed in *C:\Users\YourUserName\AppData\Local\Programs\Python\Python311\Scripts\pip.exe* (change *YourUserName* and Python version) and might be added to the path. If pip is not recognized, add its folder to your PATH environment variable, or adapt and run the helper script **install_libs.bat**
