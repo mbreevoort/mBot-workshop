@@ -127,6 +127,7 @@ class mBot():
     def start(self):
         sys.excepthook = self.excepthook
         th = threading.Thread(target=self.__onRead,args=(self.onParse,))
+        th.daemon = True
         th.start()
         
     def close(self):
