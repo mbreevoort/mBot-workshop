@@ -2,6 +2,9 @@ from lib.mBot import *
 import unicurses as uc
 
 def main():
+    keyboardControlled()
+
+def keyboardControlled():
     # Initialize screen (returns a WINDOW pointer, not a Python object)
     stdscr = uc.initscr()
     uc.cbreak()
@@ -13,10 +16,6 @@ def main():
         uc.wmove(stdscr, 0, 0)
         uc.waddstr(stdscr, "Press keys (ESC to exit):")
         uc.wrefresh(stdscr)
-        uc.timeout(0)
-
-        last_beep = 0
-        reverse = False
 
         while True:
             ch = uc.wgetch(stdscr)
@@ -38,12 +37,6 @@ def main():
             if ch == 32:   # SPACE key
                 bot.doMove(0, 0)
 
-            if (reverse):
-                now = time.time()
-                if now - last_beep > 1.2:  # every 1.2 seconds
-                    bot.doBuzzer(1200, 300)  # 300 milliseconds beep
-                    last_beep = now
-
             uc.wclear(stdscr)
             uc.wmove(stdscr, 0, 0)
             uc.waddstr(stdscr, "Press keys (ESC to exit):")
@@ -55,10 +48,8 @@ def main():
                 char_repr = 'non-printable'
 
             uc.wmove(stdscr, 1, 0)
-            uc.waddstr(stdscr, f"Key pressed: {ch} ({char_repr})")  # -1 means "no key pressed"
+            uc.waddstr(stdscr, f"Key pressed: {ch} ({char_repr})")
             uc.wrefresh(stdscr)
-
-            sleep(0.1)
 
     finally:
         uc.keypad(stdscr, False)
