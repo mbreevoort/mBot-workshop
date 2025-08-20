@@ -25,18 +25,23 @@ def main():
 
             if ch == 258 or ch == 456 or ch == 115:  # DOWN key mac, win, s
                 bot.doMove(-100, -100)
+                reverse = True
 
             if ch == 259 or ch == 450 or ch == 119:  # UP key mac, win, w
                 bot.doMove(200, 200)
+                reverse = False
 
             if ch == 260 or ch == 452 or ch == 97:  # LEFT key mac, win, a
                 bot.doMove(-100, 100)
+                reverse = False
 
             if ch == 261 or ch == 454 or ch == 100:  # RIGHT key mac, win, d
                 bot.doMove(100, -100)
+                reverse = False
 
             if ch == 32:   # SPACE key
                 bot.doMove(0, 0)
+                reverse = False
 
             if (reverse):
                 now = time.time()
