@@ -1,14 +1,28 @@
 from lib.mBot import *
 import unicurses as uc
 
+reverse = False
+bot: mBot
+
+def processSensorValue(value):
+    global bot
+    global reverse
+    print(f"UltrasonicSensor response {value}")
+    if value < 6:
+         bot.doMove(-70, -70)
+         reverse = True
+         bot.requestUltrasonicSensor(2, 3, processSensorValue)
+
+
 def main():
     # Initialize screen (returns a WINDOW pointer, not a Python object)
     stdscr = uc.initscr()
     uc.cbreak()
     uc.noecho()
     uc.keypad(stdscr, True)  # Pass the WINDOW pointer explicitly
+    global bot
     bot = findMBot()
-
+    
     try:
         uc.wmove(stdscr, 0, 0)
         uc.waddstr(stdscr, "Press keys (ESC to exit):")
@@ -16,7 +30,7 @@ def main():
         uc.timeout(0)
 
         last_beep = 0
-        reverse = False
+        global reverse
 
         while True:
             ch = uc.wgetch(stdscr)
@@ -30,6 +44,7 @@ def main():
             if ch == 259 or ch == 450 or ch == 119:  # UP key mac, win, w
                 bot.doMove(200, 200)
                 reverse = False
+                bot.requestUltrasonicSensor(2, 3, processSensorValue)
 
             if ch == 260 or ch == 452 or ch == 97:  # LEFT key mac, win, a
                 bot.doMove(-100, 100)
@@ -48,7 +63,7 @@ def main():
                 if now - last_beep > 1.2:  # every 1.2 seconds
                     bot.doBuzzer(1200, 300)  # 300 milliseconds beep
                     last_beep = now
-
+ 
             uc.wclear(stdscr)
             uc.wmove(stdscr, 0, 0)
             uc.waddstr(stdscr, "Press keys (ESC to exit):")
