@@ -4,8 +4,7 @@ distance = 0
 
 def processSensor(value):
     global distance
-    with lock:
-        distance = value
+    distance = value
 
 if __name__ == '__main__':
     bot = findMBot()
