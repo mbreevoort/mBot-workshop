@@ -29,6 +29,7 @@ def main():
 
             if ch == 259 or ch == 450 or ch == 119:  # UP key mac, win, w
                 bot.doMove(200, 200)
+                bot.requestUltrasonicSensor(2, 3, process_sensor_value)
                 reverse = False
 
             if ch == 260 or ch == 452 or ch == 97:  # LEFT key mac, win, a
@@ -72,6 +73,13 @@ def main():
         uc.endwin()
         bot.doMove(0, 0) # stop the motor
         print ('Bye!')
+
+
+def process_sensor_value(value, pbot):
+    print(f"UltrasonicSensor response {value}")
+    if value < 6:
+         pbot.doMove(-70, -70)
+         pbot.requestUltrasonicSensor(2, 3, process_sensor_value)
 
 
 if __name__ == "__main__":

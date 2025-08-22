@@ -1,7 +1,7 @@
 from lib.mBot import *
 import random
 
-def processLine(value):
+def processLine(value, pbot):
     detected = ""
     if value == 1:
         detected = "Right"
@@ -13,7 +13,7 @@ def processLine(value):
     print(f"LineFollower {detected} response {value} ")
     
 
-def processSensor(value):
+def processSensor(value, pbot):
     print(f"UltrasonicSensor response {value}")
 
 
