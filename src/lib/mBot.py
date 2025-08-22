@@ -251,7 +251,7 @@ class mBot():
         return struct.unpack('<f', struct.pack('4B', *v))[0]
 
     def responseValue(self, extID, value):
-        self.__selectors["callback_"+str(extID)](value)
+        self.__selectors["callback_"+str(extID)](value, self)
         
     def __doCallback(self, extID, callback):
         self.__selectors["callback_"+str(extID)] = callback
