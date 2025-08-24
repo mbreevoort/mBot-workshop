@@ -1,7 +1,7 @@
 from lib.mBot import *
 import random
 
-def processLine(value):
+def process_line(value):
     detected = ""
     if value == 1:
         detected = "Right"
@@ -13,17 +13,20 @@ def processLine(value):
     print(f"LineFollower {detected} response {value} ")
     
 
-def processSensor(value):
+def process_sensor(value):
     print(f"UltrasonicSensor response {value}")
 
+def process_light(value):
+    print(f"Light on board response {value}") # light is 1000+
 
 if __name__ == '__main__':
     # Connect with the mBot
     bot = findMBot()
     try:
         while True:
-            bot.requestLineFollower(1, 2, processLine)
-            bot.requestUltrasonicSensor(2, 3, processSensor)
+            bot.requestLineFollower(1, 2, process_line)
+            bot.requestUltrasonicSensor(2, 3, process_sensor)
+            bot.requestLightOnBoard(3, process_light)
             sleep(1)
     finally:
         print("Exit")
