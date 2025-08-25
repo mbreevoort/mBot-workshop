@@ -1,16 +1,13 @@
 from lib.mBot import *
-
-distance = 0
-
-def processSensor(value):
-    global distance
-    distance = value
+from lib.DistanceSensor import *
 
 if __name__ == '__main__':
     bot = findMBot()
+    distance_sensor = DistanceSensor(bot)
+
     try:
         while True:
-            bot.requestUltrasonicSensor(2, 3, processSensor)
+            distance = distance_sensor.get_distance()
             if (distance < 20):
                 bot.doMove(-200,200)
             else:
