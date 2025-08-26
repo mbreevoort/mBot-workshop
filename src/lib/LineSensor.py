@@ -14,14 +14,14 @@ def _process_line(value):
     _line_value = value
 
 class LineFollower:
-    def __init__(self, bot, port1=1, port2=2):
+    def __init__(self, bot, extID=1, port=2):
         self.bot = bot
         self.line_value = LINE_NONE
-        self.port1 = port1
-        self.port2 = port2
+        self.extID = extID
+        self.port = port
 
     def update(self):
-        self.bot.requestLineFollower(self.port1, self.port2, _process_line)
+        self.bot.requestLineFollower(self.extID, self.port, _process_line)
         sleep(0.1)  # small delay to let callback update
 
     def get_line_status(self):

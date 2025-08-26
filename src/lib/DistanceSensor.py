@@ -8,14 +8,14 @@ def _process_distance(value):
     _distance_value = value
 
 class DistanceSensor:
-    def __init__(self, bot, port1=2, port2=3):
+    def __init__(self, bot, extID=2, port=3):
         self.bot = bot
         self.distance = 0
-        self.port1 = port1
-        self.port2 = port2
+        self.extID = extID
+        self.port = port
 
     def update(self):
-        self.bot.requestUltrasonicSensor(self.port1, self.port2, _process_distance)
+        self.bot.requestUltrasonicSensor(self.extID, self.port, _process_distance)
         sleep(0.1)  # small delay to let callback update
 
     def get_distance(self):
