@@ -1,4 +1,5 @@
 from lib.mBot import *
+from lib.LineFollower import *
 
 line = 0
 
@@ -8,23 +9,20 @@ def processLine(value):
 
 if __name__ == '__main__':
     bot = findMBot()
+    follower = LineFollower(bot)
     try:
         while True:
-            bot.requestLineFollower(1, 2, processLine)
+            line = follower.get_line_status()
 
-            if line == 3: #no line detected
-                bot.doMove(70, -70)
+            if line == LINE_NONE:       # no line detected
+                bot.doMove(100, -100)
+            elif line == LINE_RIGHT:    # line detected right
+                bot.doMove(100, 0)
+            elif line == LINE_LEFT:     # line detected left
+                bot.doMove(0, 100)
+            elif line == LINE_CENTER:   # line centered
+                bot.doMove(100, 100)
 
-            if line == 2: #line detected right
-                bot.doMove(70,0)
-
-            if line == 1: #line detected left
-                bot.doMove(0,70)
-
-            if line == 0: #line detected
-                bot.doMove(70,70)
-
-            sleep(0.02)
     finally:
         bot.doMove(0,0)
         bot.close()
