@@ -13,7 +13,7 @@ def _process_line(value):
     global _line_value
     _line_value = value
 
-class LineFollower:
+class LineSensor:
     def __init__(self, bot, extID=1, port=2):
         self.bot = bot
         self.line_value = LINE_NONE
